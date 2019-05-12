@@ -28,8 +28,7 @@ public class TestController {
     @Autowired
     private DownExcelService downExcelService;
 
-    @Autowired
-    private JPAService jpaService;
+
 
     @GetMapping(value="helloword")
     public String HelloWord(HttpServletRequest request){
@@ -59,18 +58,6 @@ public class TestController {
     }
 
 
-    /**
-     * @Author 蔡迪
-     * @Description //jpa测试
-     * @Date 9:36 2019/4/23
-     * @Param [request]
-     * @return void
-     **/
-    @RequestMapping("listAllUser")
-    public List<User> listAllUser(){
-
-        List<User>  listUser = jpaService.listUser();
-        return listUser;
-    }
+ 
 
 }

@@ -1,6 +1,6 @@
 package com.caidi.springbootadvanced.service.impl;
 
-import com.caidi.springbootadvanced.MybatisDao.MyBatisDao;
+import com.caidi.springbootadvanced.dao.dbone.MyBatisDao;
 import com.caidi.springbootadvanced.domain.MybaitsUser;
 import com.caidi.springbootadvanced.service.UserService;
 import com.github.pagehelper.PageHelper;

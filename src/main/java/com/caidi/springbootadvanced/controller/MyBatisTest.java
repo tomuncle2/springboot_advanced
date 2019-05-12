@@ -30,6 +30,7 @@ public class MyBatisTest {
     @GetMapping(value="lists")
     List<MybaitsUser> listUsers(){
         List<MybaitsUser> listUsers =  userService.listUsers();
+        System.out.println(listUsers);
         return listUsers;
     }
 
