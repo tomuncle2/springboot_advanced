@@ -15,7 +15,6 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
@@ -31,10 +30,12 @@ public class MybatisConfig {
         Properties p = new Properties();
         p.setProperty("offsetAsPageNum", "true");
         p.setProperty("rowBoundsWithCount", "true");
+        //参数合理化
         p.setProperty("reasonable", "true");
         pageHelper.setProperties(p);
         return pageHelper;
     }
+
     //连接池
     @Bean(name = "dataSourceFinanceSource")
     @ConfigurationProperties(prefix = "spring.datasource.financesource")

@@ -1,4 +1,4 @@
-package com.caidi.springbootadvanced.MybatisDao;
+package com.caidi.springbootadvanced.dao.dbone;
 
 import org.apache.ibatis.annotations.*;
 import com.caidi.springbootadvanced.domain.MybaitsUser;
@@ -10,7 +10,7 @@ mybatis添加的注解,
 目的是减少xml的编写，
 实现接口实现类。并注入spring容器
  */
-@Mapper
+//@Mapper
 public interface MyBatisDao{
     @Insert(value = "insert into user (uid,username,password,enabled) values(#{uid},#{username},#{password},#{enabled})")
     //主键生成策略
