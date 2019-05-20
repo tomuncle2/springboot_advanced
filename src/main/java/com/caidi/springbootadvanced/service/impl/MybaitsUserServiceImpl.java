@@ -23,9 +23,11 @@ public class MybaitsUserServiceImpl implements MybaitsUserService {
     @Override
     public List<MybaitsUser> getMybatisUser(Integer id) {
         Example example = new Example(MybaitsUser.class);
-        //条件对象
+        //排序对象
         Example.OrderBy orderBy = example.orderBy("uid");
        // Example.Criterion criterion = example.createCriteria();
+
+        //条件对象
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("uid",id);
         List<MybaitsUser> mybaitsUsers = myDao.selectByExample(example);

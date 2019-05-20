@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
+import tk.mybatis.spring.annotation.MapperScan;
 
 /*
 打war包需要继承springboot初始化类，springboot自动生成，运行类
