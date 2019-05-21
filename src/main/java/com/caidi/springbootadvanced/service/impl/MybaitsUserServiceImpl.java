@@ -3,11 +3,15 @@ package com.caidi.springbootadvanced.service.impl;
 import com.caidi.springbootadvanced.dao.dbone.MyDao;
 import com.caidi.springbootadvanced.domain.MybaitsUser;
 import com.caidi.springbootadvanced.service.MybaitsUserService;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
 @Service
 public class MybaitsUserServiceImpl implements MybaitsUserService {
 
@@ -16,12 +20,17 @@ public class MybaitsUserServiceImpl implements MybaitsUserService {
 
     @Override
     public List<MybaitsUser> listMybatisUser() {
-        List<MybaitsUser> mybaitsUsers = myDao.selectAll();
+        Example example = new Example(MybaitsUser.class);
+        //排序对象
+        Example.OrderBy orderBy = example.orderBy("uid");
+        orderBy.desc();
+        List<MybaitsUser> mybaitsUsers = myDao.selectByExample(example);
         return mybaitsUsers;
     }
 
     @Override
     public List<MybaitsUser> getMybatisUser(Integer id) {
+        ConcurrentMap concurrentMapCache = new ConcurrentHashMap();
         Example example = new Example(MybaitsUser.class);
         //排序对象
         Example.OrderBy orderBy = example.orderBy("uid");

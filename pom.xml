@@ -59,7 +59,7 @@
             <!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->
         <!--</dependency>-->
 
-        <!--通用mapper-->
+        <!--通用mapper 自带mybatis-->
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
@@ -87,11 +87,11 @@
 			请不要使用1.0.0版本，因为还不支持拦截器插件，
 	    	1.1.1 是博主写帖子时候的版本，大家使用最新版本即可
 	     -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.0.1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.mybatis.spring.boot</groupId>-->
+            <!--<artifactId>mybatis-spring-boot-starter</artifactId>-->
+            <!--<version>2.0.1</version>-->
+        <!--</dependency>-->
 
         <!--
             MyBatis提供了拦截器接口，我们可以实现自己的拦截器，
@@ -170,11 +170,11 @@
         <!--</dependency>-->
 
 
-        <!--  cache -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-cache</artifactId>
-        </dependency>
+        <!--  cache redis不需要此依赖-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-cache</artifactId>-->
+        <!--</dependency>-->
         <!--  redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
