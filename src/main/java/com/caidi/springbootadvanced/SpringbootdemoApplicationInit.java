@@ -13,7 +13,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 以替代spring传统项目的web.xml(tomcat等容器读取)
  */
 //@EnableScheduling spring自带自动任务需要开启
-@EnableCaching //开启缓存
+//@EnableCaching //开启缓存
 @SpringBootApplication(exclude = {QuartzAutoConfiguration.class})
 //扫描包下面的持久化类 QuartzAutoConfiguration.class
 //@MapperScan(basePackages={"com.caidi.springbootadvanced.MybatisDao.*"})
