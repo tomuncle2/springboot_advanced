@@ -2,9 +2,7 @@ package com.caidi.springbootadvanced.controller;
 
 
 import com.caidi.springbootadvanced.domain.Person;
-import com.caidi.springbootadvanced.domain.User;
 import com.caidi.springbootadvanced.service.DownExcelService;
-import com.caidi.springbootadvanced.service.JPAService;
 import com.caidi.springbootadvanced.util.ExcelUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
