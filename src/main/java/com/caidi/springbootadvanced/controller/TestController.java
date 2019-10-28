@@ -27,35 +27,30 @@ public class TestController {
     private DownExcelService downExcelService;
 
 
-
-    @GetMapping(value="helloword")
-    public String HelloWord(HttpServletRequest request){
+    @GetMapping(value = "helloword")
+    public String HelloWord(HttpServletRequest request) {
         /**/
         HttpSession session = request.getSession();
         return "hello word !!";
     }
 
-    @GetMapping(value="downexcel")
-    public void export(HttpServletResponse response){
+    @GetMapping(value = "downexcel")
+    public void export(HttpServletResponse response) {
 
         downExcelService.downExcel(response);
     }
 
     /**
+     * @return void
      * @Author 蔡迪
      * @Description //easypoi导入
      * @Date 9:36 2019/4/23
      * @Param [request]
-     * @return void
      **/
     @RequestMapping("importExcel")
-    public void importExcel(HttpServletRequest request){
+    public void importExcel(HttpServletRequest request) {
         //解析excel，
-        String filePath="//海贼王.xsl";
-        List<Person> personList = ExcelUtil.importExcel(filePath,1,1,Person.class);
+        String filePath = "//海贼王.xsl";
+        List<Person> personList = ExcelUtil.importExcel(filePath, 1, 1, Person.class);
     }
-
-
- 
-
 }
