@@ -17,11 +17,15 @@ public class RabbitMQConstant {
     // 交换机1
     public static final String TOPIC_EXCHANGE_1 = "topic_ex_1";
     // 交换机1
-    public static final String FOUNT_EXCHANGE_1 = "fount_ex_1";
+    public static final String FANOUT_EXCHANGE_1 = "fanout_ex_1";
     // 交换机1
     public static final String DIRECT_EXCHANGE_1 = "direct_ex_1";
     // key
-    public static final String TOPIC_KEY_1 = "topic_key_1";
+    public static final String TOPIC_KEY_1 = "topic_key.#";
     // key
     public static final String DIRECT_KEY_1 = "direct_key_1";
+    // key
+    public static final String TOPIC_KEY_2 = "topic_key.*";
+    // key
+    public static final String TOPIC_KEY_3 = "topic_key.test";
 }

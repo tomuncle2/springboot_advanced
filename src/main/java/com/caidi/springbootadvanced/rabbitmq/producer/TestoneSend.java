@@ -17,7 +17,32 @@ public class TestoneSend {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    /**
+    普通方法 queue:customer 1:1(普通) 1:n（work模式）
+     */
     public void testOneSend(Object msg){
         rabbitTemplate.convertAndSend(RabbitMQConstant.QUENE_1, msg);
     }
+
+    /**
+     fanout producer:queue  1:n（fanout模式）
+     */
+    public void testFanoutSend(Object msg){
+        rabbitTemplate.convertAndSend(RabbitMQConstant.FANOUT_EXCHANGE_1,"",msg);
+    }
+
+    /**
+     direct producer:queue  1:n（direct模式）
+     */
+    public void testDirectSend(Object msg){
+        rabbitTemplate.convertAndSend(RabbitMQConstant.DIRECT_EXCHANGE_1,"direct_key_1", msg);
+    }
+
+    /**
+     topic producer:queue  1:n（topic模式）
+     */
+    public void testTopicSend(Object msg){
+        rabbitTemplate.convertAndSend(RabbitMQConstant.TOPIC_EXCHANGE_1, "topic_key.test",msg);
+    }
+
 }

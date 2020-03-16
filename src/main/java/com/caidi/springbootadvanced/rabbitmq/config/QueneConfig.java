@@ -4,7 +4,6 @@ import com.caidi.springbootadvanced.rabbitmq.constant.RabbitMQConstant;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Exchange;
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
@@ -79,7 +78,7 @@ public class QueneConfig {
      */
     @Bean
     public FanoutExchange fanoutExchange_1(){
-        return new FanoutExchange(RabbitMQConstant.FOUNT_EXCHANGE_1,true,false);
+        return new FanoutExchange(RabbitMQConstant.FANOUT_EXCHANGE_1,true,false);
     }
 
     /**
