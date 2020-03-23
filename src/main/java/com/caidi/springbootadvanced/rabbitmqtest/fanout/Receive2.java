@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @date: 16:33 2020/3/21
  * @description: 消费者2
  */
-@Component
+@Component("fanout-receive2")
 @RabbitListener(queues = RabbitMQConstantTest.QUENE_3)
 public class Receive2 {
     /**

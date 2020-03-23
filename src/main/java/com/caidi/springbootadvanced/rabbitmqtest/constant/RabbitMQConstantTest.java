@@ -38,6 +38,8 @@ public class RabbitMQConstantTest {
     public static final String FANOUT_EXCHANGE_1 = "fanout_ex_1";
     // 路由-交换机1
     public static final String DIRECT_EXCHANGE_1 = "direct_ex_1";
+    // 路由-交换机1
+    public static final String DIRECT_EXCHANGE_2 = "direct_ex_2";
     //主题-交换机2（通配符）-交换机2
     public static final String TOPIC_EXCHANGE_2 = "topic_ex_2";
 

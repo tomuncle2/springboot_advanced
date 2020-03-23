@@ -142,6 +142,18 @@ public class QueneConfig {
         return new DirectExchange(RabbitMQConstantTest.DIRECT_EXCHANGE_1,true,false);
     }
 
+
+    /**
+     * @description //路由交换机1
+     * @date 16:08 2020/3/10
+     * @param
+     * @return org.springframework.amqp.core.Exchange
+     */
+    @Bean
+    public DirectExchange directExchange_2(){
+        return new DirectExchange(RabbitMQConstantTest.DIRECT_EXCHANGE_2,true,false);
+    }
+
     /**
      * @description //广播交换机1
      * @date 16:08 2020/3/10
@@ -247,7 +259,7 @@ public class QueneConfig {
     public Binding directExchangeBinding3(){
         //BindingBuilder
         //return BindingBuilder.bind(Queue1()).to(directExchange_1()).w(RabbitMQConstant.DIRECT_KEY_1);
-        return BindingBuilder.bind(Queue6()).to(directExchange_1()).with(RabbitMQConstantTest.DIRECT_KEY_2);
+        return BindingBuilder.bind(Queue6()).to(directExchange_2()).with(RabbitMQConstantTest.DIRECT_KEY_2);
     }
 
 
@@ -261,7 +273,7 @@ public class QueneConfig {
     public Binding topicExchangeBinding1(){
         //BindingBuilder
         //return BindingBuilder.bind(Queue1()).to(directExchange_1()).w(RabbitMQConstant.DIRECT_KEY_1);
-        return BindingBuilder.bind(Queue6()).to(directExchange_1()).with(RabbitMQConstantTest.TOPIC_KEY_1);
+        return BindingBuilder.bind(Queue7()).to(topicExchange_1()).with(RabbitMQConstantTest.TOPIC_KEY_1);
     }
 
     /**
@@ -274,7 +286,7 @@ public class QueneConfig {
     public Binding topicExchangeBinding2(){
         //BindingBuilder
         //return BindingBuilder.bind(Queue1()).to(directExchange_1()).w(RabbitMQConstant.DIRECT_KEY_1);
-        return BindingBuilder.bind(Queue6()).to(directExchange_1()).with(RabbitMQConstantTest.TOPIC_KEY_2);
+        return BindingBuilder.bind(Queue8()).to(topicExchange_1()).with(RabbitMQConstantTest.TOPIC_KEY_1);
     }
 
 
@@ -288,6 +300,6 @@ public class QueneConfig {
     public Binding topicExchangeBinding3(){
         //BindingBuilder
         //return BindingBuilder.bind(Queue1()).to(directExchange_1()).w(RabbitMQConstant.DIRECT_KEY_1);
-        return BindingBuilder.bind(Queue6()).to(directExchange_1()).with(RabbitMQConstantTest.TOPIC_KEY_3);
+        return BindingBuilder.bind(Queue9()).to(topicExchange_2()).with(RabbitMQConstantTest.TOPIC_KEY_3);
     }
 }

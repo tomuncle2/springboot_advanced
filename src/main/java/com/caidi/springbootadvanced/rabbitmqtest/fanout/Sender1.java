@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @date: 16:31 2020/3/21
  * @description: 生产者1
  */
-@Component
+@Component("fanout-sender1")
 @Slf4j
 public class Sender1 {
 
@@ -19,7 +19,7 @@ public class Sender1 {
     private RabbitTemplate rabbitTemplate;
 
     public void send(String msg) {
-        rabbitTemplate.convertAndSend(RabbitMQConstantTest.QUENE_3, msg);
+        rabbitTemplate.convertAndSend(RabbitMQConstantTest.FANOUT_EXCHANGE_1,"", msg);
         log.warn(this.getClass().getName() + " 生产消息： " + msg);
     }
 }
