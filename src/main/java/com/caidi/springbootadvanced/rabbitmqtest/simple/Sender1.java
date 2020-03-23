@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @date: 16:31 2020/3/21
  * @description: 生产者1
  */
-@Component
+@Component(value = "simple-sender1")
 public class Sender1 {
 
     @Autowired
