@@ -31,6 +31,10 @@ public class RabbitMQConstantTest {
     public static final String QUENE_10 = "topic_q2";
     // 队列4
     public static final String QUENE_11 = "topic_q3";
+    // 立即消费队列1
+    public static final String DELAY_QUEUE = "delay_q1";
+    // 延迟消息处理队列
+    public static final String DELAY_QUEUE_DEAL = "delay_deal_q1";
 
     // 主题-交换机1（通配符）-交换机1
     public static final String TOPIC_EXCHANGE_1 = "topic_ex_1";
@@ -53,4 +57,15 @@ public class RabbitMQConstantTest {
     public static final String TOPIC_KEY_2 = "topic_key.*";
     // 主题key3
     public static final String TOPIC_KEY_3 = "topic_key.test";
+
+
+    // 立即消费交换机
+    public static final String IMMEDIATE_QUEUE_EXCHANGE = "immediate.ex";
+    // 死信交换机
+    public static final String DELAY_QUEUE_EXCHANGE = "delay.ex";
+
+    // 立即消费交换机
+    public static final String IMMEDIATE_QUEUE_DIRECT_KEY = "immediate.direct_key1";
+    // 死信交换机
+    public static final String DELAY_QUEUE_EXCHANGE_DIRECT_KEY = "delay.direct_key1";
 }

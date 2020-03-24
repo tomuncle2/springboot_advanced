@@ -3,12 +3,16 @@ package com.caidi.springbootadvanced.rabbitmqtest.config;
 import com.caidi.springbootadvanced.rabbitmqtest.constant.RabbitMQConstantTest;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.CustomExchange;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author: 蔡迪
@@ -171,7 +175,7 @@ public class QueneConfig {
      * @param
      * @return org.springframework.amqp.core.Exchange
      */
-    @Bean
+    @Bean(RabbitMQConstantTest.TOPIC_EXCHANGE_1)
     public TopicExchange topicExchange_1(){
         return new TopicExchange(RabbitMQConstantTest.TOPIC_EXCHANGE_1,true,false);
     }
@@ -182,7 +186,7 @@ public class QueneConfig {
      * @param
      * @return org.springframework.amqp.core.Exchange
      */
-    @Bean
+    @Bean(RabbitMQConstantTest.TOPIC_EXCHANGE_2)
     public TopicExchange topicExchange_2(){
         return new TopicExchange(RabbitMQConstantTest.TOPIC_EXCHANGE_2,true,false);
     }
@@ -245,7 +249,7 @@ public class QueneConfig {
     public Binding directExchangeBinding2(){
         //BindingBuilder
         //return BindingBuilder.bind(Queue1()).to(directExchange_1()).w(RabbitMQConstant.DIRECT_KEY_1);
-        return BindingBuilder.bind(Queue6()).to(directExchange_1()).with(RabbitMQConstantTest.DIRECT_KEY_1);
+        return BindingBuilder.bind(Queue7()).to(directExchange_1()).with(RabbitMQConstantTest.DIRECT_KEY_1);
     }
 
 
@@ -259,7 +263,7 @@ public class QueneConfig {
     public Binding directExchangeBinding3(){
         //BindingBuilder
         //return BindingBuilder.bind(Queue1()).to(directExchange_1()).w(RabbitMQConstant.DIRECT_KEY_1);
-        return BindingBuilder.bind(Queue6()).to(directExchange_2()).with(RabbitMQConstantTest.DIRECT_KEY_2);
+        return BindingBuilder.bind(Queue8()).to(directExchange_2()).with(RabbitMQConstantTest.DIRECT_KEY_2);
     }
 
 
@@ -273,7 +277,7 @@ public class QueneConfig {
     public Binding topicExchangeBinding1(){
         //BindingBuilder
         //return BindingBuilder.bind(Queue1()).to(directExchange_1()).w(RabbitMQConstant.DIRECT_KEY_1);
-        return BindingBuilder.bind(Queue7()).to(topicExchange_1()).with(RabbitMQConstantTest.TOPIC_KEY_1);
+        return BindingBuilder.bind(Queue9()).to(topicExchange_1()).with(RabbitMQConstantTest.TOPIC_KEY_1);
     }
 
     /**
@@ -286,7 +290,7 @@ public class QueneConfig {
     public Binding topicExchangeBinding2(){
         //BindingBuilder
         //return BindingBuilder.bind(Queue1()).to(directExchange_1()).w(RabbitMQConstant.DIRECT_KEY_1);
-        return BindingBuilder.bind(Queue8()).to(topicExchange_1()).with(RabbitMQConstantTest.TOPIC_KEY_1);
+        return BindingBuilder.bind(Queue10()).to(topicExchange_1()).with(RabbitMQConstantTest.TOPIC_KEY_1);
     }
 
 
@@ -300,6 +304,52 @@ public class QueneConfig {
     public Binding topicExchangeBinding3(){
         //BindingBuilder
         //return BindingBuilder.bind(Queue1()).to(directExchange_1()).w(RabbitMQConstant.DIRECT_KEY_1);
-        return BindingBuilder.bind(Queue9()).to(topicExchange_2()).with(RabbitMQConstantTest.TOPIC_KEY_3);
+        return BindingBuilder.bind(Queue11()).to(topicExchange_2()).with(RabbitMQConstantTest.TOPIC_KEY_3);
     }
+
+    // 创建一个立即消费队列
+    @Bean
+    public Queue immediateQueue() {
+        // 第一个参数是创建的queue的名字，第二个参数是是否支持持久化
+        return new Queue(RabbitMQConstantTest.DELAY_QUEUE, true);
+    }
+
+    // 创建一个死信队列
+    @Bean
+    public Queue delayQueue() {
+        Map<String, Object> params = new HashMap<>();
+        // x-dead-letter-exchange 声明了队列里的死信转发到的DLX名称，
+        params.put("x-dead-letter-exchange", RabbitMQConstantTest.DELAY_QUEUE_EXCHANGE);
+        // x-dead-letter-routing-key 声明了这些死信在转发时携带的 routing-key 名称。
+        params.put("x-dead-letter-routing-key", "delay.direct_key1");
+        return new Queue(RabbitMQConstantTest.DELAY_QUEUE_DEAL, true, false, false, params);
+    }
+
+    @Bean
+    public DirectExchange immediateExchange() {
+        // 一共有三种构造方法，可以只传exchange的名字， 第二种，可以传exchange名字，是否支持持久化，是否可以自动删除，
+        //第三种在第二种参数上可以增加Map，Map中可以存放自定义exchange中的参数
+        return new DirectExchange(RabbitMQConstantTest.IMMEDIATE_QUEUE_EXCHANGE, true, false);
+    }
+
+    @Bean
+    public DirectExchange deadLetterExchange() {
+        // 一共有三种构造方法，可以只传exchange的名字， 第二种，可以传exchange名字，是否支持持久化，是否可以自动删除，
+        // 第三种在第二种参数上可以增加Map，Map中可以存放自定义exchange中的参数
+        return new DirectExchange(RabbitMQConstantTest.DELAY_QUEUE_EXCHANGE, true, false);
+    }
+
+    @Bean
+    // 把立即消费的队列和立即消费的exchange绑定在一起
+    public Binding immediateBinding() {
+        return BindingBuilder.bind(immediateQueue()).to(immediateExchange()).with(RabbitMQConstantTest.IMMEDIATE_QUEUE_DIRECT_KEY);
+    }
+
+    @Bean
+    // 把立即消费的队列和立即消费的exchange绑定在一起
+    public Binding delayBinding() {
+        return BindingBuilder.bind(delayQueue()).to(deadLetterExchange()).with(RabbitMQConstantTest.DELAY_QUEUE_EXCHANGE_DIRECT_KEY);
+    }
+
+
 }

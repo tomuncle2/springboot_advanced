@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @description: 消费者3
  */
 @Component("fanout-receive3")
-@RabbitListener(queues = RabbitMQConstantTest.QUENE_3)
+@RabbitListener(queues = RabbitMQConstantTest.QUENE_5)
 public class Receive3 {
     /**
      * 参数的方法重载

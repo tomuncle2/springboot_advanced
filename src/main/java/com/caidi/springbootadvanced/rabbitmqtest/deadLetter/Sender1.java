@@ -1,4 +1,4 @@
-package com.caidi.springbootadvanced.rabbitmqtest.topic;
+package com.caidi.springbootadvanced.rabbitmqtest.deadLetter;
 
 import com.caidi.springbootadvanced.rabbitmqtest.constant.RabbitMQConstantTest;
 import lombok.extern.slf4j.Slf4j;
@@ -11,21 +11,25 @@ import org.springframework.stereotype.Component;
  * @date: 16:31 2020/3/21
  * @description: 生产者1
  */
-@Component("topic-sender1")
+@Component(value = "deadLetter-sender1")
 @Slf4j
 public class Sender1 {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public void send1(String msg, String key) {
-        rabbitTemplate.convertAndSend(RabbitMQConstantTest.TOPIC_EXCHANGE_1, key, msg);
+    /**
+     * 设置消息过期时间
+     * @date 15:48 2020/3/24
+     * @param msg
+     * @return void
+     */
+    public void send(String msg, String key) {
+        rabbitTemplate.convertAndSend(RabbitMQConstantTest.IMMEDIATE_QUEUE_EXCHANGE,key,msg, message -> {
+            // 过期时间10000毫秒
+            message.getMessageProperties().setExpiration("1000");
+            return message;
+        });
         log.warn(this.getClass().getName() + " 生产消息： " + msg);
     }
-
-    public void send2(String msg, String key) {
-        rabbitTemplate.convertAndSend(RabbitMQConstantTest.TOPIC_EXCHANGE_2, key, msg);
-        log.warn(this.getClass().getName() + " 生产消息： " + msg);
-    }
-
 }

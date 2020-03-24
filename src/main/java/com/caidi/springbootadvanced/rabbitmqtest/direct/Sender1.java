@@ -18,13 +18,13 @@ public class Sender1 {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public void send1(String msg) {
-        rabbitTemplate.convertAndSend(RabbitMQConstantTest.DIRECT_EXCHANGE_1,RabbitMQConstantTest.DIRECT_KEY_1, msg);
+    public void send1(String msg, String key) {
+        rabbitTemplate.convertAndSend(RabbitMQConstantTest.DIRECT_EXCHANGE_1,key, msg);
         log.warn(this.getClass().getName() + " 生产消息： " + msg);
     }
 
-    public void send2(String msg) {
-        rabbitTemplate.convertAndSend(RabbitMQConstantTest.DIRECT_EXCHANGE_2,RabbitMQConstantTest.DIRECT_KEY_2, msg);
+    public void send2(String msg, String key) {
+        rabbitTemplate.convertAndSend(RabbitMQConstantTest.DIRECT_EXCHANGE_2,key, msg);
         log.warn(this.getClass().getName() + " 生产消息： " + msg);
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @description: 消费者1
  */
 @Component("direct-receive1")
-@RabbitListener(queues = RabbitMQConstantTest.QUENE_3)
+@RabbitListener(queues = RabbitMQConstantTest.QUENE_6)
 public class Receive1 {
     /**
      * 参数的方法重载
