@@ -24,6 +24,7 @@ public class TestRabbitMqDealy {
         //topicSender1.send1("hello Topic rabbitmq", "topic_key.test");
 
         deadLetterSender1.send("hello dealyqu rabbitmq", "delay.direct_key1");
+        System.out.println("测试");
     }
 
 }
