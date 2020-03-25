@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
  * @date: 16:32 2020/3/21
  * @description: 即时消费者
  */
-@Component(value = "deadLetter-receive1")
-@RabbitListener(queues = RabbitMQConstantTest.DELAY_QUEUE)
+@Component(value = "immediate-receive1")
+@RabbitListener(queues = RabbitMQConstantTest.IMMEDIATE_QUEUE)
 public class Receive1 {
 
     /**

@@ -23,7 +23,7 @@ public class TestRabbitMqDealy {
 
         //topicSender1.send1("hello Topic rabbitmq", "topic_key.test");
 
-        deadLetterSender1.send("hello dealyqu rabbitmq", "immediate.direct_key1");
+        deadLetterSender1.send("hello dealyqu rabbitmq", "delay.direct_key1");
     }
 
 }

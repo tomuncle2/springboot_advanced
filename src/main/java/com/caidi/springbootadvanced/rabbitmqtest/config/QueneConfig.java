@@ -311,7 +311,7 @@ public class QueneConfig {
     @Bean
     public Queue immediateQueue() {
         // 第一个参数是创建的queue的名字，第二个参数是是否支持持久化
-        return new Queue(RabbitMQConstantTest.DELAY_QUEUE, true);
+        return new Queue(RabbitMQConstantTest.IMMEDIATE_QUEUE, true,false, false);
     }
 
     // 创建一个死信队列
@@ -319,10 +319,10 @@ public class QueneConfig {
     public Queue delayQueue() {
         Map<String, Object> params = new HashMap<>();
         // x-dead-letter-exchange 声明了队列里的死信转发到的DLX名称，
-        params.put("x-dead-letter-exchange", RabbitMQConstantTest.DELAY_QUEUE_EXCHANGE);
+        params.put("x-dead-letter-exchange", RabbitMQConstantTest.IMMEDIATE_QUEUE_EXCHANGE);
         // x-dead-letter-routing-key 声明了这些死信在转发时携带的 routing-key 名称。
-        params.put("x-dead-letter-routing-key", "delay.direct_key1");
-        return new Queue(RabbitMQConstantTest.DELAY_QUEUE_DEAL, true, false, false, params);
+        params.put("x-dead-letter-routing-key", RabbitMQConstantTest.IMMEDIATE_QUEUE_DIRECT_KEY);
+        return new Queue(RabbitMQConstantTest.DELAY_QUEUE, true, false, false, params);
     }
 
     @Bean

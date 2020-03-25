@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @description: 死信消息消费者
  */
 @Component(value = "deadLetter-receiveDeal")
-@RabbitListener(queues = RabbitMQConstantTest.DELAY_QUEUE_DEAL)
+@RabbitListener(queues = RabbitMQConstantTest.DELAY_QUEUE)
 public class ReceiveDeal {
 
     /**

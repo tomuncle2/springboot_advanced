@@ -34,7 +34,7 @@ public class RabbitMQConstantTest {
     // 立即消费队列1
     public static final String DELAY_QUEUE = "delay_q1";
     // 延迟消息处理队列
-    public static final String DELAY_QUEUE_DEAL = "delay_deal_q1";
+    public static final String IMMEDIATE_QUEUE = "delay_deal_q1";
 
     // 主题-交换机1（通配符）-交换机1
     public static final String TOPIC_EXCHANGE_1 = "topic_ex_1";

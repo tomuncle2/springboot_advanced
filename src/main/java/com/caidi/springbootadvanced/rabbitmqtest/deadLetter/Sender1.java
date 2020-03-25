@@ -25,7 +25,7 @@ public class Sender1 {
      * @return void
      */
     public void send(String msg, String key) {
-        rabbitTemplate.convertAndSend(RabbitMQConstantTest.IMMEDIATE_QUEUE_EXCHANGE,key,msg, message -> {
+        rabbitTemplate.convertAndSend(RabbitMQConstantTest.DELAY_QUEUE_EXCHANGE,key,msg, message -> {
             // 过期时间10000毫秒
             message.getMessageProperties().setExpiration("1000");
             return message;
