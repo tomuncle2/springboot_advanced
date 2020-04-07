@@ -1,6 +1,11 @@
 
-import okhttp3.*;
-import org.apache.commons.lang3.exception.ExceptionUtils;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Iterator;
 import java.util.Map;
 
-public class OkHttpUtil{
-    private static final Logger logger = LoggerFactory.getLogger(OkHttpUtil.class);
+public class OkHttpUtilTest {
+    private static final Logger logger = LoggerFactory.getLogger(OkHttpUtilTest.class);
 
     private static OkHttpClient okHttpClient;
 
     @Autowired
-    public OkHttpUtil(OkHttpClient  okHttpClient) {
-        OkHttpUtil.okHttpClient= okHttpClient;
+    public OkHttpUtilTest(OkHttpClient  okHttpClient) {
+        OkHttpUtilTest.okHttpClient= okHttpClient;
     }
 
     /**
